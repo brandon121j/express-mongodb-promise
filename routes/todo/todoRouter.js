@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllTodo } = require('./controller/todoController');
+const { getAllTodo, createTodo } = require('./controller/todoController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,5 +13,16 @@ router.get('/', function(req, res, next) {
             res.status(500).json({ message: "FAILURE", error: error.message })
         });
 });
+
+router.post('/create-todo', function(req, res) {
+
+    createTodo({})
+        .then(payload => {
+            res.json({ message: "SUCCESS", payload})
+        })
+        .catch(error => {
+            res.status(500).json({ message: "FAILURE", error: error.message })
+        })
+})
 
 module.exports = router;
