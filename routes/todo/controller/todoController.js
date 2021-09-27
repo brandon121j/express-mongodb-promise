@@ -3,7 +3,8 @@ const Todo = require('../model/Todo');
 function getAllTodo(body) {
     return new Promise((resolve, reject) => {
 
-        Todo.find(body)
+        Todo
+            .find(body)
             .then(payload => {
                 resolve(payload)
             })
@@ -21,14 +22,15 @@ function createTodo(body) {
             isDone: body.isDone
         })
 
-        newTodo.save()
+        newTodo
+            .save()
             .then((payload) => {
                 resolve(payload)
             })
             .catch((error) => {
                 reject(error)
             });
-            
+
     });
 }
 
