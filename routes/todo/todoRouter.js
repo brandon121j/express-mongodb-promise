@@ -4,7 +4,6 @@ const { getAllTodo } = require('./controller/todoController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.send('todo');
 
     getAllTodo({})
         .then(payload => {
