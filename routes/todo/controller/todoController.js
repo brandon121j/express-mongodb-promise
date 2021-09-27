@@ -64,10 +64,21 @@ function deleteAll() {
     })
 }
 
+function getTodoById(id) {
+
+    return new Promise ((resolve, reject) => {
+        Todo
+            .findById(id)
+            .then(payload => { resolve(payload) })
+            .catch(error => { reject(error) })
+    })
+}
+
 module.exports = {
     getAllTodo,
     createTodo,
     updateTodo,
     deleteTodo,
-    deleteAll
+    deleteAll,
+    getTodoById
 }

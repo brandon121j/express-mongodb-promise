@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllTodo, createTodo, updateTodo, deleteTodo, deleteAll } = require('./controller/todoController');
+const { getAllTodo, createTodo, updateTodo, deleteTodo, deleteAll, getTodoById } = require('./controller/todoController');
 
 
 router.get('/', function(req, res, next) {
@@ -48,14 +48,26 @@ router.delete('/delete-todo/:id', function(req, res) {
             res
             .status(500)
             .json({ message: "FAILURE", error: error.message })
-        })
-})
+        });
+});
 
 router.delete('/delete-all', function(req, res) {
 
     deleteAll()
         .then(payload => {
             res.json({ message: "SUCCESS", payload })
+        })
+        .catch(error => {
+            res
+                .status(500)
+                .json({ message: "FAILURE", error: error.message })
+        });
+});
+
+router.get('/get-todo-by-id/:id', function(req, res) {
+    getTodoById(req.params.id)
+        .then(payload => {
+            res.json({ message: "SUCCESS", payload})
         })
         .catch(error => {
             res
