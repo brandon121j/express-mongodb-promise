@@ -22,7 +22,7 @@ router.post('/create-todo', function(req, res) {
         })
         .catch(error => {
             res.status(500).json({ message: "FAILURE", error: error.message })
-        })
-})
+        });
+});
 
 module.exports = router;
