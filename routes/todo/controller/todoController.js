@@ -39,13 +39,24 @@ function updateTodo(id, body) {
     return new Promise ((resolve, reject) => {
         Todo
             .findByIdAndUpdate(id, body, { new : true })
-            .then(payload => {resolve(payload)})
-            .catch(error => {reject(error)})
+            .then(payload => { resolve(payload) })
+            .catch(error => { reject(error) })
     })
+}
+
+function deleteTodo(id) {
+
+    return new Promise ((resolve, reject) => {
+        Todo
+            .findByIdAndDelete(id)
+            .then(payload => { resolve(payload) })
+            .catch(error => { reject(error) })
+    });
 }
 
 module.exports = {
     getAllTodo,
     createTodo,
-    updateTodo
+    updateTodo,
+    deleteTodo
 }
