@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllTodo, createTodo } = require('./controller/todoController');
+const { getAllTodo, createTodo, updateTodo } = require('./controller/todoController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,5 +24,16 @@ router.post('/create-todo', function(req, res) {
             res.status(500).json({ message: "FAILURE", error: error.message })
         });
 });
+
+router.put('/update-todo/:id', function(req, res) {
+
+    updateTodo(req.params.id, req.body)
+        .then(payload => {
+            res.json({ message: "SUCCESS", payload})
+        })
+        .catch(error => {
+            res.status(500).json({ message: "FAILURE", error: error.message })
+        })
+})
 
 module.exports = router;

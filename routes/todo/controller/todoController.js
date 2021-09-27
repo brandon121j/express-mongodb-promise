@@ -34,7 +34,18 @@ function createTodo(body) {
     });
 }
 
+function updateTodo(id, body) {
+
+    return new Promise ((resolve, reject) => {
+        Todo
+            .findByIdAndUpdate(id, body, { new : true })
+            .then(payload => {resolve(payload)})
+            .catch(error => {reject(error)})
+    })
+}
+
 module.exports = {
     getAllTodo,
     createTodo,
+    updateTodo
 }
