@@ -38,7 +38,7 @@ router.put('/update-todo/:id', function(req, res) {
         });
 });
 
-router.delete('/delete-todo/:id', function(req, res) {
+router.delete('/delete-by-id/:id', function(req, res) {
 
     deleteTodo(req.params.id)
         .then(payload => {
