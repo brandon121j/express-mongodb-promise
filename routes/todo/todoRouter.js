@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/create-todo', function(req, res) {
 
-    createTodo({})
+    createTodo(req.body)
         .then(payload => {
             res.json({ message: "SUCCESS", payload})
         })
