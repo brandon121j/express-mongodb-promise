@@ -54,9 +54,20 @@ function deleteTodo(id) {
     });
 }
 
+function deleteAll() {
+
+    return new Promise ((resolve, reject) => {
+        Todo
+            .deleteMany()
+            .then(payload => { resolve(payload) })
+            .catch(error => {reject(error) })
+    })
+}
+
 module.exports = {
     getAllTodo,
     createTodo,
     updateTodo,
-    deleteTodo
+    deleteTodo,
+    deleteAll
 }
